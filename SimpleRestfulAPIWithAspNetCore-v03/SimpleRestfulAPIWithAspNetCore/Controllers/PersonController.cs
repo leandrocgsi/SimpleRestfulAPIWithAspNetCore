@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimpleRestfulAPIWithAspNetCore.Models;
 using SimpleRestfulAPIWithAspNetCore.Services;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Collections.Generic;
 
 namespace SimpleRestfulAPIWithAspNetCore.Controllers
 {
@@ -25,6 +27,10 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         //Mapeia as requisições GET para http://localhost:{porta}/api/person/
         //Get sem parâmetros para o FindAll --> Busca Todos
         [HttpGet]
+        [SwaggerResponse((200), Type = typeof(List<Person>))]
+        [SwaggerResponse(204)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
         public IActionResult Get()
         {
             return Ok(_personService.FindAll());
@@ -34,6 +40,10 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         //recebendo um ID como no Path da requisição
         //Get com parâmetros para o FindById --> Busca Por ID
         [HttpGet("{id}")]
+        [SwaggerResponse((200), Type = typeof(Person))]
+        [SwaggerResponse(204)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
         public IActionResult Get(string id)
         {
             var person = _personService.FindById(id);
@@ -44,6 +54,9 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         //Mapeia as requisições POST para http://localhost:{porta}/api/person/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         [HttpPost]
+        [SwaggerResponse((201), Type = typeof(Person))]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
         public IActionResult Post([FromBody]Person person)
         {
             if (person == null) return BadRequest();
@@ -53,6 +66,9 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         //Mapeia as requisições PUT para http://localhost:{porta}/api/person/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         [HttpPut]
+        [SwaggerResponse((202), Type = typeof(Person))]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
         public IActionResult Put([FromBody]Person person)
         {
             if (person == null) return BadRequest();
@@ -62,6 +78,9 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         //Mapeia as requisições DELETE para http://localhost:{porta}/api/person/{id}
         //recebendo um ID como no Path da requisição
         [HttpDelete("{id}")]
+        [SwaggerResponse(204)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
         public IActionResult Delete(string id)
         {
             _personService.Delete(id);
