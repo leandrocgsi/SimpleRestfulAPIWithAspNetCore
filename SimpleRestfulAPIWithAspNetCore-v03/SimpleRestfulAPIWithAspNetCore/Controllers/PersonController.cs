@@ -19,7 +19,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
 
         //Configura o Swagger para a operação http://localhost:{porta}/api/person/
         //Determina o objeto de retorno em caso de sucesso List<Person>
-        //Define os códigos de retorno 204, 400 e 401
+        //O [SwaggerResponse(XYZ)] define os códigos de retorno 204, 400 e 401
         [HttpGet]
         [SwaggerResponse((200), Type = typeof(List<Person>))]
         [SwaggerResponse(204)]
@@ -32,7 +32,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
 
         //Configura o Swagger para a operação http://localhost:{porta}/api/person/{id}
         //Determina o objeto de retorno em caso de sucesso Person
-        //Define os códigos de retorno 204, 400 e 401
+        //O [SwaggerResponse(XYZ)] define os códigos de retorno 204, 400 e 401
         [HttpGet("{id}")]
         [SwaggerResponse((200), Type = typeof(Person))]
         [SwaggerResponse(204)]
@@ -47,7 +47,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
 
         //Configura o Swagger para a operação http://localhost:{porta}/api/person/
         //Determina o objeto de retorno em caso de sucesso Person
-        //Define os códigos de retorno 400 e 401
+        //O [SwaggerResponse(XYZ)] define os códigos de retorno 400 e 401
         [HttpPost]
         [SwaggerResponse((201), Type = typeof(Person))]
         [SwaggerResponse(400)]
@@ -60,7 +60,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
 
         //Configura o Swagger para a operação http://localhost:{porta}/api/person/
         //Determina o objeto de retorno em caso de sucesso Person
-        //Define os códigos de retorno 400 e 401
+        //O [SwaggerResponse(XYZ)] define os códigos de retorno 400 e 401
         [HttpPut]
         [SwaggerResponse((202), Type = typeof(Person))]
         [SwaggerResponse(400)]
@@ -72,7 +72,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         }
 
         //Configura o Swagger para a operação http://localhost:{porta}/api/person/{id}
-        //O [SwaggerResponse(XYZ)] Define os códigos de retorno 400 e 401
+        //O [SwaggerResponse(XYZ)] define os códigos de retorno 400 e 401
         [HttpDelete("{id}")]
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
