@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using SimpleRestfulAPIWithAspNetCore.Models;
 using System.Threading;
+using SimpleRestfulAPIWithAspNetCore.Models.Context;
+using System.Linq;
 
 namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
 {
@@ -11,11 +13,20 @@ namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
         // acessando nenhum banco de dados
         private volatile int count;
 
+        private readonly MySQLContext _context;
+
+        public PersonServiceImpl(MySQLContext context)
+        {
+            _context = context;
+        }
+
         // Metodo responsável por criar uma nova pessoa
         // Se tivéssemos um banco de dados esse seria o
         // momento de persistir os dados
         public Person Create(Person person)
         {
+            _context.Add(MockPerson(1));
+            _context.SaveChanges();
             return person;
         }
 
@@ -37,13 +48,14 @@ namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
         // mais uma vez essas informações são mocks
         public List<Person> FindAll()
         {
-            List<Person> persons = new List<Person>();
+            return _context.Persons.ToList();
+            /*List<Person> persons = new List<Person>();
             for (int i = 0; i < 8; i++)
             {
                 Person person = MockPerson(i);
                 persons.Add(person);
             }
-            return persons;
+            return persons;*/
         }
 
         // Método responsável por atualizar uma pessoa
