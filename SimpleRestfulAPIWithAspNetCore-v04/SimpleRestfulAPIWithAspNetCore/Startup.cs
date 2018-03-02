@@ -6,6 +6,8 @@ using SimpleRestfulAPIWithAspNetCore.Services;
 using SimpleRestfulAPIWithAspNetCore.Services.Implementations;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
+using SimpleRestfulAPIWithAspNetCore.Models.Context;
 
 namespace SimpleRestfulAPIWithAspNetCore
 {
@@ -18,22 +20,23 @@ namespace SimpleRestfulAPIWithAspNetCore
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = Configuration["MySqlConnection:MySqlConnectionString"];
+            services.AddDbContext<MySQLContext>(options =>
+                options.UseMySql(connection)
+            );
+
             services.AddMvc();
 
-            // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My Simple RESTful API with ASP.NET Core", Version = "v1" });
             });
 
-            //Dependency Injection
             services.AddScoped<IPersonService, PersonServiceImpl>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -41,19 +44,12 @@ namespace SimpleRestfulAPIWithAspNetCore
                 app.UseDeveloperExceptionPage();
             }
 
-            // Habilita a disponiblilização pela API da documentação do Swagger como um endpoint JSON.
             app.UseSwagger();
-
-            // Habilita a disponiblilização pela API pela disponibilização do swagger-ui contendo
-            // (HTML, JS, CSS, etc.), specificando o endpoint JSON do Swagger.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            // Define a página do Swagger como página inicial
-            // Caso não funcionar verificar se o arquivo
-            // launchSettings não está sobrescrevendo essa regra
             var option = new RewriteOptions();
             option.AddRedirect("^$", "swagger");
             app.UseRewriter(option);
