@@ -25,7 +25,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
         // momento de persistir os dados
         public Person Create(Person person)
         {
-            _context.Add(MockPerson(1));
+            _context.Add(person);
             _context.SaveChanges();
             return person;
         }
@@ -49,19 +49,16 @@ namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
         public List<Person> FindAll()
         {
             return _context.Persons.ToList();
-            /*List<Person> persons = new List<Person>();
-            for (int i = 0; i < 8; i++)
-            {
-                Person person = MockPerson(i);
-                persons.Add(person);
-            }
-            return persons;*/
         }
 
         // Método responsável por atualizar uma pessoa
         // por ser mock retornamos a mesma informação passada
         public Person Update(Person person)
         {
+            var returnPerson = new Person();
+            //var result = _context.Exists(person.Id);
+            //if (!result) return new Person();
+            var updated = _context.Update(person);
             return person;
         }
 
