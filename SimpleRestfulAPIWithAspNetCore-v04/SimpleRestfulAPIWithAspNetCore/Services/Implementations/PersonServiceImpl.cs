@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using SimpleRestfulAPIWithAspNetCore.Models;
 using System.Threading;
@@ -33,15 +35,9 @@ namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
         // Método responsável por retornar uma pessoa
         // como não acessamos nenhuma base de dados
         // estamos retornando um mock
-        public Person FindById(string personId)
+        public Person FindById(string id)
         {
-            return new Person
-            {
-                Id = IncrementAndGet(),
-                FirstName = "Leandro",
-                LastName = "Costa",
-                Address = "Uberlândia - Minas Gerais - Brasil"
-            };
+            return _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
         }
 
         // Método responsável por retornar todas as pessoas
