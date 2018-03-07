@@ -54,14 +54,17 @@ namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
             var returnPerson = new Person();
             //var result = _context.Exists(person.Id);
             //if (!result) return new Person();
-            var updated = _context.Update(person);
+            var updated = _context.Persons.Update(person);
             return person;
         }
 
         // Método responsável por deletar
         // uma pessoa a partir de um ID
-        public void Delete(string personId)
+        public void Delete(string id)
         {
+            var result = _context.Persons.SingleOrDefault(i => i.Id.Equals(id));
+            _context.Persons.Remove(result);
+            _context.SaveChanges();
             //A nossa lógica de exclusão viria aqui
         }
 
