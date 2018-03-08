@@ -6,10 +6,10 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Interfaces
     public interface IPersonRepository
     {
         Person Create(Person person);
-        Person FindById(string id);
+        Person FindById(long id);
         List<Person> FindAll();
         Person Update(Person person);
-        void Delete(string id);
+        void Delete(long id);
 
         bool Exists(long id);
     }

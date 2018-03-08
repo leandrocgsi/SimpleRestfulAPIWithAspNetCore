@@ -6,9 +6,9 @@ namespace SimpleRestfulAPIWithAspNetCore.Business
     public interface IPersonBusiness
     {
         Person Create(Person person);
-        Person FindById(string personId);
+        Person FindById(long id);
         List<Person> FindAll();
         Person Update(Person person);
-        void Delete(string personId);
+        void Delete(long id);
     }
 }

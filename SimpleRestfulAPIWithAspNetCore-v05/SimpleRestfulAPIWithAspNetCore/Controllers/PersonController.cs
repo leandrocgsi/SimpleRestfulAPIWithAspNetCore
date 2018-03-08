@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimpleRestfulAPIWithAspNetCore.Models;
-using SimpleRestfulAPIWithAspNetCore.Services;
+using SimpleRestfulAPIWithAspNetCore.Business;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 
@@ -10,11 +10,11 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
     [Route("api/[controller]")]
     public class PersonController : Controller
     {
-        private IPersonBusiness _personService;
+        private IPersonBusiness _personBusiness;
 
-        public PersonController(IPersonBusiness personService)
+        public PersonController(IPersonBusiness personBusiness)
         {
-            _personService = personService;
+            _personBusiness = personBusiness;
         }
 
         // Configura o Swagger para a operação
@@ -29,7 +29,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         [SwaggerResponse(401)]
         public IActionResult Get()
         {
-            return Ok(_personService.FindAll());
+            return Ok(_personBusiness.FindAll());
         }
 
         // Configura o Swagger para a operação
@@ -42,9 +42,9 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
-        public IActionResult Get(string id)
+        public IActionResult Get(long id)
         {
-            var person = _personService.FindById(id);
+            var person = _personBusiness.FindById(id);
             if (person == null) return NotFound();
             return Ok(person);
         }
@@ -61,7 +61,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         public IActionResult Post([FromBody]Person person)
         {
             if (person == null) return BadRequest();
-            return new ObjectResult(_personService.Create(person));
+            return new ObjectResult(_personBusiness.Create(person));
         }
 
         // Configura o Swagger para a operação
@@ -76,7 +76,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         public IActionResult Put([FromBody]Person person)
         {
             if (person == null) return BadRequest();
-            return new ObjectResult(_personService.Update(person));
+            return new ObjectResult(_personBusiness.Update(person));
         }
 
         // Configura o Swagger para a operação
@@ -86,9 +86,9 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(long id)
         {
-            _personService.Delete(id);
+            _personBusiness.Delete(id);
             return NoContent();
         }
     }

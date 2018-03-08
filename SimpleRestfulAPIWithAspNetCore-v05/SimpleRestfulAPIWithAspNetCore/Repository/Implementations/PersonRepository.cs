@@ -35,7 +35,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Implementations
         }
 
         // Método responsável por retornar uma pessoa
-        public Person FindById(string id)
+        public Person FindById(long id)
         {
             return _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
         }
@@ -73,7 +73,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Implementations
 
         // Método responsável por deletar
         // uma pessoa a partir de um ID
-        public void Delete(string id)
+        public void Delete(long id)
         {
             var result = _context.Persons.SingleOrDefault(i => i.Id.Equals(id));
             try

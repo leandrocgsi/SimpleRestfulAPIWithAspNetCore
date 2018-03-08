@@ -19,7 +19,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
             return _repository.Create(person);
         }
 
-        public Person FindById(string id)
+        public Person FindById(long id)
         {
             return _repository.FindById(id);
         }
@@ -34,7 +34,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
             return _repository.Update(person);
         }
 
-        public void Delete(string id)
+        public void Delete(long id)
         {
             _repository.Delete(id);
         }
