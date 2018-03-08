@@ -23,39 +23,58 @@ namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
         }
 
         // Metodo responsável por criar uma nova pessoa
-        // Se tivéssemos um banco de dados esse seria o
-        // momento de persistir os dados
+        // nesse momento adicionamos o objeto ao contexto
+        // e finalmente salvamos as mudanças no contexto
+        // na base de dados
         public Person Create(Person person)
         {
-            _context.Add(person);
-            _context.SaveChanges();
+            try
+            {
+                _context.Add(person);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return person;
         }
 
         // Método responsável por retornar uma pessoa
-        // como não acessamos nenhuma base de dados
-        // estamos retornando um mock
         public Person FindById(string id)
         {
             return _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
         }
 
         // Método responsável por retornar todas as pessoas
-        // mais uma vez essas informações são mocks
         public List<Person> FindAll()
         {
             return _context.Persons.ToList();
         }
 
         // Método responsável por atualizar uma pessoa
-        // por ser mock retornamos a mesma informação passada
         public Person Update(Person person)
         {
-            var returnPerson = new Person();
-            //var result = _context.Exists(person.Id);
-            //if (!result) return new Person();
-            var updated = _context.Persons.Update(person);
-            return person;
+            // Verificamos se a pessoa existe na base
+            // Se não existir retornamos uma instancia vazia de pessoa
+            if (!Exists(person.Id)) return new Person();
+
+            // Pega o estado atual do registro no banco
+            // seta as alterações e salva
+            var result = _context.Persons.SingleOrDefault(b => b.Id == person.Id);
+            if (result != null)
+            {
+                try
+                {
+                    _context.Entry(result).CurrentValues.SetValues(person);
+                    _context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return result;
         }
 
         // Método responsável por deletar
@@ -63,26 +82,20 @@ namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
         public void Delete(string id)
         {
             var result = _context.Persons.SingleOrDefault(i => i.Id.Equals(id));
-            _context.Persons.Remove(result);
-            _context.SaveChanges();
-            //A nossa lógica de exclusão viria aqui
+            try
+            {
+                if (result != null) _context.Persons.Remove(result);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        // Método responsável por mockar uma pessoa
-        private Person MockPerson(int i)
+        public bool Exists(long Id)
         {
-            return new Person
-            {
-                Id = IncrementAndGet(),
-                FirstName = "Person Name " + i,
-                LastName = "Last Name " + i,
-                Address = "Some Address in Brasil " + i
-            };
-        }
-        
-        public Int32 IncrementAndGet()
-        {
-            return Interlocked.Increment(ref count);
+            return _context.Persons.Any(b => b.Id.Equals(Id));
         }
     }
 }
