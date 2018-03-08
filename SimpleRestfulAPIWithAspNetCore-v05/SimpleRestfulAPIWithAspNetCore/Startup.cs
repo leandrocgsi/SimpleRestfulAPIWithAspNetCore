@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SimpleRestfulAPIWithAspNetCore.Services;
-using SimpleRestfulAPIWithAspNetCore.Services.Implementations;
+using SimpleRestfulAPIWithAspNetCore.Business;
+using SimpleRestfulAPIWithAspNetCore.Business.Implementations;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using SimpleRestfulAPIWithAspNetCore.Models.Context;
+using SimpleRestfulAPIWithAspNetCore.Repository.Interfaces;
+using SimpleRestfulAPIWithAspNetCore.Repository.Implementations;
 
 namespace SimpleRestfulAPIWithAspNetCore
 {
@@ -34,7 +36,9 @@ namespace SimpleRestfulAPIWithAspNetCore
                 c.SwaggerDoc("v1", new Info { Title = "My Simple RESTful API with ASP.NET Core", Version = "v1" });
             });
 
-            services.AddScoped<IPersonService, PersonServiceImpl>();
+            services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
+
+            services.AddScoped<IPersonRepository, PersonRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

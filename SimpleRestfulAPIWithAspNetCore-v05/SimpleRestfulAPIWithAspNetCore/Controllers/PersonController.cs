@@ -10,9 +10,9 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
     [Route("api/[controller]")]
     public class PersonController : Controller
     {
-        private IPersonService _personService;
+        private IPersonBusiness _personService;
 
-        public PersonController(IPersonService personService)
+        public PersonController(IPersonBusiness personService)
         {
             _personService = personService;
         }

@@ -1,9 +1,9 @@
 ﻿using SimpleRestfulAPIWithAspNetCore.Models;
 using System.Collections.Generic;
 
-namespace SimpleRestfulAPIWithAspNetCore.Services
+namespace SimpleRestfulAPIWithAspNetCore.Business
 {
-    public interface IPersonService
+    public interface IPersonBusiness
     {
         Person Create(Person person);
         Person FindById(string personId);
