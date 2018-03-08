@@ -90,9 +90,9 @@ namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
             }
         }
 
-        public bool Exists(long Id)
+        public bool Exists(long id)
         {
-            return _context.Persons.Any(b => b.Id.Equals(Id));
+            return _context.Persons.Any(b => b.Id.Equals(id));
         }
     }
 }
