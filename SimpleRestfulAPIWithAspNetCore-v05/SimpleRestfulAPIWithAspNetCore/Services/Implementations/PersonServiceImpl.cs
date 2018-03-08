@@ -3,93 +3,50 @@ using System;
 using SimpleRestfulAPIWithAspNetCore.Models;
 using SimpleRestfulAPIWithAspNetCore.Models.Context;
 using System.Linq;
+using SimpleRestfulAPIWithAspNetCore.Repository.Interfaces;
 
 namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
 {
     public class PersonServiceImpl : IPersonService
     {
 
-        private readonly MySQLContext _context;
+        private readonly IPersonRepository _repository;
 
-        public PersonServiceImpl(MySQLContext context)
+        public PersonServiceImpl(IPersonRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        // Metodo responsável por criar uma nova pessoa
-        // nesse momento adicionamos o objeto ao contexto
-        // e finalmente salvamos as mudanças no contexto
-        // na base de dados
         public Person Create(Person person)
         {
-            try
-            {
-                _context.Add(person);
-                _context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return person;
+            return _repository.Create(person);
         }
 
         // Método responsável por retornar uma pessoa
         public Person FindById(string id)
         {
-            return _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
+            return _repository.FindById(id);
         }
 
         // Método responsável por retornar todas as pessoas
         public List<Person> FindAll()
         {
-            return _context.Persons.ToList();
+            return _repository.FindAll();
         }
 
-        // Método responsável por atualizar uma pessoa
         public Person Update(Person person)
         {
-            // Verificamos se a pessoa existe na base
-            // Se não existir retornamos uma instancia vazia de pessoa
-            if (!Exists(person.Id)) return new Person();
-
-            // Pega o estado atual do registro no banco
-            // seta as alterações e salva
-            var result = _context.Persons.SingleOrDefault(b => b.Id == person.Id);
-            if (result != null)
-            {
-                try
-                {
-                    _context.Entry(result).CurrentValues.SetValues(person);
-                    _context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-            return result;
+            return _repository.Update(person);
         }
 
-        // Método responsável por deletar
-        // uma pessoa a partir de um ID
         public void Delete(string id)
         {
-            var result = _context.Persons.SingleOrDefault(i => i.Id.Equals(id));
-            try
-            {
-                if (result != null) _context.Persons.Remove(result);
-                _context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            _repository.Delete(id);
         }
 
         public bool Exists(long id)
         {
-            return _context.Persons.Any(b => b.Id.Equals(id));
+            return _repository.Exists(id);
         }
     }
 }

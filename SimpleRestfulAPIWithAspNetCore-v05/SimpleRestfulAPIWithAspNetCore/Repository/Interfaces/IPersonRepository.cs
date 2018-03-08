@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SimpleRestfulAPIWithAspNetCore.Repository.Interfaces
 {
-    interface IPersonRepository
+    public interface IPersonRepository
     {
         Person Create(Person person);
         Person FindById(string id);
