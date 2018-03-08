@@ -8,9 +8,6 @@ namespace SimpleRestfulAPIWithAspNetCore.Services.Implementations
 {
     public class PersonServiceImpl : IPersonService
     {
-        // Contador responsável por gerar um fake ID já que não estamos
-        // acessando nenhum banco de dados
-        private volatile int count;
 
         private readonly MySQLContext _context;
 
