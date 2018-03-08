@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using SimpleRestfulAPIWithAspNetCore.Models;
-using System.Threading;
 using SimpleRestfulAPIWithAspNetCore.Models.Context;
 using System.Linq;
 
