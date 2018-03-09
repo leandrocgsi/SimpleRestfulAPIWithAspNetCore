@@ -80,7 +80,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Generic
             }
         }
 
-        public IEnumerable<T> FindAll()
+        public List<T> FindAll()
         {
             return dataSet.ToList();
         }

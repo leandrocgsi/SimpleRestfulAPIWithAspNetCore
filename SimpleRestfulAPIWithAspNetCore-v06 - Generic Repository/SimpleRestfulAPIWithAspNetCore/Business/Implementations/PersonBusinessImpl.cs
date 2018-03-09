@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using SimpleRestfulAPIWithAspNetCore.Models.Entities;
-using SimpleRestfulAPIWithAspNetCore.Repository.Interfaces;
+using SimpleRestfulAPIWithAspNetCore.Repository.Generic;
 
 namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
 {
     public class PersonBusinessImpl : IPersonBusiness
     {
 
-        private readonly IPersonRepository _repository;
+        private IRepository<Person> _repository;
 
-        public PersonBusinessImpl(IPersonRepository repository)
+        public PersonBusinessImpl(IRepository<Person> repository)
         {
             _repository = repository;
         }

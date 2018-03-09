@@ -9,7 +9,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Generic
         T Update(T item);
         void Remove(object Id);
         void Remove(T item);
-        IEnumerable<T> FindAll();
+        List<T> FindAll();
         T Find(object Id);
         bool Exists(object Id);
 

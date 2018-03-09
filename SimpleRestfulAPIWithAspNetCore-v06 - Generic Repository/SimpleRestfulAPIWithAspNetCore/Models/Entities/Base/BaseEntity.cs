@@ -10,6 +10,6 @@ namespace SimpleRestfulAPIWithAspNetCore.Models.Entities.Base
         [Key]
         [Column("id")]
         [DataMember(Order = 1)]
-        public string Id { get; set; }
+        public long Id { get; set; }
     }
 }
