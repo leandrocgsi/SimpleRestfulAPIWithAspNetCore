@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace SimpleRestfulAPIWithAspNetCore.Repository.Generic
 {
+    //Nossa interface para o Repositório Genérico
     public interface IRepository<T> where T : BaseEntity
     {
         T Add(T item);

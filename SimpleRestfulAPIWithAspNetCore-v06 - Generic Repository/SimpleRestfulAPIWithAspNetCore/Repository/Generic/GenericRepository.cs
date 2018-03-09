@@ -7,9 +7,14 @@ using SimpleRestfulAPIWithAspNetCore.Models.Entities.Context;
 
 namespace SimpleRestfulAPIWithAspNetCore.Repository.Generic
 {
+    // A implementação do repositório genérico
+    // Recebe qualquer Tipo T que implemente IRepository de mesmo tipo
+    // Desde que T extenda BaseEntity
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly MySQLContext _context;
+
+        // Declaração de um dataset genérico
         private DbSet<T> dataSet;
 
         public GenericRepository(MySQLContext context)

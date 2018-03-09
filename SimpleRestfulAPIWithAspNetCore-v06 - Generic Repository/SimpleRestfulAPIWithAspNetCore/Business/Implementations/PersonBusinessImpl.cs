@@ -7,10 +7,12 @@ namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
     public class PersonBusinessImpl : IPersonBusiness
     {
 
+        //Declarando o repositório
         private IRepository<Person> _repository;
 
         public PersonBusinessImpl(IRepository<Person> repository)
         {
+            //Atribuindo o repositório injetado
             _repository = repository;
         }
 

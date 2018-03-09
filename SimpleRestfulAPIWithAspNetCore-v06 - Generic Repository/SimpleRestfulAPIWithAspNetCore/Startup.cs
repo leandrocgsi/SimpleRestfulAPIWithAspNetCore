@@ -8,8 +8,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using SimpleRestfulAPIWithAspNetCore.Models.Entities.Context;
-using SimpleRestfulAPIWithAspNetCore.Repository.Interfaces;
-using SimpleRestfulAPIWithAspNetCore.Repository.Implementations;
+using SimpleRestfulAPIWithAspNetCore.Repository.Generic;
 
 namespace SimpleRestfulAPIWithAspNetCore
 {
@@ -38,7 +37,8 @@ namespace SimpleRestfulAPIWithAspNetCore
 
             services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
 
-            services.AddScoped<IPersonRepository, PersonRepository>();
+            //Adicionando a injeção de dependencias do repositorio genérico
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -60,7 +60,5 @@ namespace SimpleRestfulAPIWithAspNetCore
 
             app.UseMvc();
         }
-
-        //SEE: https://docs.microsoft.com/pt-br/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio
     }
 }
