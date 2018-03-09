@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace SimpleRestfulAPIWithAspNetCore.Models.Context
+namespace SimpleRestfulAPIWithAspNetCore.Models.Entities.Context
 {
     public class MySQLContext : DbContext
     {

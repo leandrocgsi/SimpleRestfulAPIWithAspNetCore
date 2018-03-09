@@ -1,4 +1,4 @@
-﻿using SimpleRestfulAPIWithAspNetCore.Models;
+﻿using SimpleRestfulAPIWithAspNetCore.Models.Entities;
 using System.Collections.Generic;
 
 namespace SimpleRestfulAPIWithAspNetCore.Services

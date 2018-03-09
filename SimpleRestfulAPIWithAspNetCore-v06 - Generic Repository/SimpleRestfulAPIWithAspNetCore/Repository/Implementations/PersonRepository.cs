@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using SimpleRestfulAPIWithAspNetCore.Models;
+using SimpleRestfulAPIWithAspNetCore.Models.Entities;
 using SimpleRestfulAPIWithAspNetCore.Repository.Interfaces;
-using SimpleRestfulAPIWithAspNetCore.Models.Context;
+using SimpleRestfulAPIWithAspNetCore.Models.Entities.Context;
 using System;
 using System.Linq;
 
@@ -20,7 +20,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Implementations
         // nesse momento adicionamos o objeto ao contexto
         // e finalmente salvamos as mudanças no contexto
         // na base de dados
-        public Person Create(Person person)
+        public Person Add(Person person)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Implementations
         }
 
         // Método responsável por retornar uma pessoa
-        public Person FindById(long id)
+        public Person Find(long id)
         {
             return _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
         }
@@ -73,7 +73,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Implementations
 
         // Método responsável por deletar
         // uma pessoa a partir de um ID
-        public void Delete(long id)
+        public void Remove(long id)
         {
             var result = _context.Persons.SingleOrDefault(i => i.Id.Equals(id));
             try

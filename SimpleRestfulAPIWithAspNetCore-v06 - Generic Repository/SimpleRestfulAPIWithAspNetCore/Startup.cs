@@ -7,7 +7,7 @@ using SimpleRestfulAPIWithAspNetCore.Business.Implementations;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
-using SimpleRestfulAPIWithAspNetCore.Models.Context;
+using SimpleRestfulAPIWithAspNetCore.Models.Entities.Context;
 using SimpleRestfulAPIWithAspNetCore.Repository.Interfaces;
 using SimpleRestfulAPIWithAspNetCore.Repository.Implementations;
 

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SimpleRestfulAPIWithAspNetCore.Models;
+using SimpleRestfulAPIWithAspNetCore.Models.Entities;
 using SimpleRestfulAPIWithAspNetCore.Repository.Interfaces;
 
 namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
@@ -16,12 +16,12 @@ namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
 
         public Person Create(Person person)
         {
-            return _repository.Create(person);
+            return _repository.Add(person);
         }
 
         public Person FindById(long id)
         {
-            return _repository.FindById(id);
+            return _repository.Find(id);
         }
 
         public List<Person> FindAll()
@@ -36,7 +36,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
 
         public void Delete(long id)
         {
-            _repository.Delete(id);
+            _repository.Remove(id);
         }
 
         public bool Exists(long id)

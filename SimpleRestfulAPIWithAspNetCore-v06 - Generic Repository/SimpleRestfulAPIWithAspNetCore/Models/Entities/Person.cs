@@ -1,4 +1,4 @@
-﻿namespace SimpleRestfulAPIWithAspNetCore.Models
+﻿namespace SimpleRestfulAPIWithAspNetCore.Models.Entities
 {
     public class Person
     {

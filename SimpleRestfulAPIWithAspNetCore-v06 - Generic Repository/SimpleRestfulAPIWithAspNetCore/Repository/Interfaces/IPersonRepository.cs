@@ -1,15 +1,15 @@
-﻿using SimpleRestfulAPIWithAspNetCore.Models;
+﻿using SimpleRestfulAPIWithAspNetCore.Models.Entities;
 using System.Collections.Generic;
 
 namespace SimpleRestfulAPIWithAspNetCore.Repository.Interfaces
 {
     public interface IPersonRepository
     {
-        Person Create(Person person);
-        Person FindById(long id);
-        List<Person> FindAll();
+        Person Add(Person person);
         Person Update(Person person);
-        void Delete(long id);
+        void Remove(long id);
+        List<Person> FindAll();
+        Person Find(long id);
 
         bool Exists(long id);
     }
