@@ -23,7 +23,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         // determina o objeto de retorno em caso de sucesso List<Person>
         // O [SwaggerResponse(XYZ)] define os códigos de retorno 204, 400 e 401
         [HttpGet]
-        [SwaggerResponse((200), Type = typeof(List<Person>))]
+        [SwaggerResponse((200), Type = typeof(List<PersonVO>))]
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
@@ -38,7 +38,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         // determina o objeto de retorno em caso de sucesso Person
         // O [SwaggerResponse(XYZ)] define os códigos de retorno 204, 400 e 401
         [HttpGet("{id}")]
-        [SwaggerResponse((200), Type = typeof(Person))]
+        [SwaggerResponse((200), Type = typeof(PersonVO))]
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
@@ -55,10 +55,10 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         // determina o objeto de retorno em caso de sucesso Person
         // O [SwaggerResponse(XYZ)] define os códigos de retorno 400 e 401
         [HttpPost]
-        [SwaggerResponse((201), Type = typeof(Person))]
+        [SwaggerResponse((201), Type = typeof(PersonVO))]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
-        public IActionResult Post([FromBody]Person person)
+        public IActionResult Post([FromBody]PersonVO person)
         {
             if (person == null) return BadRequest();
             return new ObjectResult(_personBusiness.Create(person));
@@ -70,10 +70,10 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         // determina o objeto de retorno em caso de sucesso Person
         // O [SwaggerResponse(XYZ)] define os códigos de retorno 400 e 401
         [HttpPut]
-        [SwaggerResponse((202), Type = typeof(Person))]
+        [SwaggerResponse((202), Type = typeof(PersonVO))]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
-        public IActionResult Put([FromBody]Person person)
+        public IActionResult Put([FromBody]PersonVO person)
         {
             if (person == null) return BadRequest();
             return new ObjectResult(_personBusiness.Update(person));

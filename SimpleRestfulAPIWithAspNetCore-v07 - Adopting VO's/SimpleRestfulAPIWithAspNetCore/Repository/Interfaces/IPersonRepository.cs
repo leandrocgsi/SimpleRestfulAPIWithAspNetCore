@@ -5,11 +5,11 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Interfaces
 {
     public interface IPersonRepository
     {
-        Person Add(Person person);
-        Person Update(Person person);
+        PersonVO Add(PersonVO person);
+        PersonVO Update(PersonVO person);
         void Remove(long id);
-        List<Person> FindAll();
-        Person Find(long id);
+        List<PersonVO> FindAll();
+        PersonVO Find(long id);
 
         bool Exists(long id);
     }

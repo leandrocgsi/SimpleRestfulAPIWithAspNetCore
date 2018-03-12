@@ -12,7 +12,6 @@ namespace SimpleRestfulAPIWithAspNetCore.Models.Entities.Base
         // Define o atributo como chave da tabela
         [Key]
         [Column("id")]
-        [DataMember(Order = 1)]
         public long Id { get; set; }
     }
 }

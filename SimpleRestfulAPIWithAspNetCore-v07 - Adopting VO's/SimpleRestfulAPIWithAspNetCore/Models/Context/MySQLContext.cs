@@ -10,6 +10,6 @@ namespace SimpleRestfulAPIWithAspNetCore.Models.Entities.Context
 
         public MySQLContext(DbContextOptions<MySQLContext> options) : base(options) { }
 
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<PersonVO> Persons { get; set; }
     }
 }

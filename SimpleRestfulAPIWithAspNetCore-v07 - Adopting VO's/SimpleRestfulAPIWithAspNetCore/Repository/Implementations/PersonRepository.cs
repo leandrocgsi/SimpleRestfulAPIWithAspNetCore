@@ -20,7 +20,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Implementations
         // nesse momento adicionamos o objeto ao contexto
         // e finalmente salvamos as mudanças no contexto
         // na base de dados
-        public Person Add(Person person)
+        public PersonVO Add(PersonVO person)
         {
             try
             {
@@ -35,23 +35,23 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository.Implementations
         }
 
         // Método responsável por retornar uma pessoa
-        public Person Find(long id)
+        public PersonVO Find(long id)
         {
             return _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
         }
 
         // Método responsável por retornar todas as pessoas
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
             return _context.Persons.ToList();
         }
 
         // Método responsável por atualizar uma pessoa
-        public Person Update(Person person)
+        public PersonVO Update(PersonVO person)
         {
             // Verificamos se a pessoa existe na base
             // Se não existir retornamos uma instancia vazia de pessoa
-            if (!Exists(person.Id)) return new Person();
+            if (!Exists(person.Id)) return new PersonVO();
 
             // Pega o estado atual do registro no banco
             // seta as alterações e salva

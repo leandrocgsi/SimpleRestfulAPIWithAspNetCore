@@ -8,30 +8,30 @@ namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
     {
 
         //Declarando o repositório
-        private IRepository<Person> _repository;
+        private IRepository<PersonVO> _repository;
 
-        public PersonBusinessImpl(IRepository<Person> repository)
+        public PersonBusinessImpl(IRepository<PersonVO> repository)
         {
             //Atribuindo o repositório injetado
             _repository = repository;
         }
 
-        public Person Create(Person person)
+        public PersonVO Create(PersonVO person)
         {
             return _repository.Add(person);
         }
 
-        public Person FindById(long id)
+        public PersonVO FindById(long id)
         {
             return _repository.Find(id);
         }
 
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
             return _repository.FindAll();
         }
 
-        public Person Update(Person person)
+        public PersonVO Update(PersonVO person)
         {
             return _repository.Update(person);
         }
