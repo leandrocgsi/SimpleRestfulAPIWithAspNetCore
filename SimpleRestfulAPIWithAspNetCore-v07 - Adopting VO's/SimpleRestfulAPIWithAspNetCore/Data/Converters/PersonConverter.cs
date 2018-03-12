@@ -1,8 +1,8 @@
-﻿using SimpleRestfulAPIWithAspNetCore.Data.Converter;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SimpleRestfulAPIWithAspNetCore.Data.Converter;
 using SimpleRestfulAPIWithAspNetCore.Data.VO;
 using SimpleRestfulAPIWithAspNetCore.Models.Entities;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SimpleRestfulAPIWithAspNetCore.Data.Converters
 {
