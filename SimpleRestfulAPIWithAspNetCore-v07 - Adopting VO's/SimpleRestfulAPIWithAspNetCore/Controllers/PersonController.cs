@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SimpleRestfulAPIWithAspNetCore.Models.Entities;
 using SimpleRestfulAPIWithAspNetCore.Business;
+using SimpleRestfulAPIWithAspNetCore.Data.VO;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 

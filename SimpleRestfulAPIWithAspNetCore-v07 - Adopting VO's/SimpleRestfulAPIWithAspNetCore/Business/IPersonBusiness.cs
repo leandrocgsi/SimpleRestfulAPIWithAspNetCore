@@ -1,4 +1,4 @@
-﻿using SimpleRestfulAPIWithAspNetCore.Models.Entities;
+﻿using SimpleRestfulAPIWithAspNetCore.Data.VO;
 using System.Collections.Generic;
 
 namespace SimpleRestfulAPIWithAspNetCore.Business

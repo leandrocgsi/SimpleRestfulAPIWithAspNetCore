@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <Folder Include="..\..\SimpleRestfulAPIWithAspNetCore-v07 - Adopting VO%2527s\SimpleRestfulAPIWithAspNetCore\Data\ValueObjects\" />
-    <Folder Include="Data\NovaPasta\" />
+    <Folder Include="Data\Adapter\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
