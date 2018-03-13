@@ -34,7 +34,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
 
         // Configura o Swagger para a operação
         // http://localhost:{porta}/api/person/{id}
-        // [SwaggerResponse((202), Type = typeof(Person))]
+        // [SwaggerResponse((202), Type = typeof(PersonVO))]
         // determina o objeto de retorno em caso de sucesso Person
         // O [SwaggerResponse(XYZ)] define os códigos de retorno 204, 400 e 401
         [HttpGet("{id}")]
@@ -51,7 +51,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
 
         // Configura o Swagger para a operação
         // http://localhost:{porta}/api/
-        // [SwaggerResponse((202), Type = typeof(Person))]
+        // [SwaggerResponse((202), Type = typeof(PersonVO))]
         // determina o objeto de retorno em caso de sucesso Person
         // O [SwaggerResponse(XYZ)] define os códigos de retorno 400 e 401
         [HttpPost]
@@ -66,7 +66,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
 
         // Configura o Swagger para a operação
         // http://localhost:{porta}/api/person/
-        // [SwaggerResponse((202), Type = typeof(Person))]
+        // [SwaggerResponse((202), Type = typeof(PersonVO))]
         // determina o objeto de retorno em caso de sucesso Person
         // O [SwaggerResponse(XYZ)] define os códigos de retorno 400 e 401
         [HttpPut]
