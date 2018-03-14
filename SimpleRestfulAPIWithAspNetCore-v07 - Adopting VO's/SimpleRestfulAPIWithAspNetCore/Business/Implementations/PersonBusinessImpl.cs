@@ -24,30 +24,54 @@ namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
 
         public PersonVO Create(PersonVO person)
         {
+            // Retorna uma nova instancia de PersonVO
+            // O mais adequado é validar a entrada de dados
             if (person == null) return new PersonVO();
+
+            // Converte um VO em uma entidade
             var personEntity = _converter.Parse(person);
+
+            // Persiste os dados
             var result = _repository.Add(personEntity);
+
+            // Converte a Entidade retornada em VO
             var personVO = _converter.Parse(result);
+
+            //Retorna o VO
             return personVO;
         }
 
         public PersonVO FindById(long id)
         {
+            // Converte a Entidade retornada em VO e a retorna
             return _converter.Parse(_repository.Find(id));
         }
 
         public List<PersonVO> FindAll()
         {
+            //Busca todas as pessoas
             var persons = _repository.FindAll();
+
+            // Converte a lista de Entidades retornada em VO e a retorna
             return _converter.ParseEntityListToVOList(persons);
         }
 
         public PersonVO Update(PersonVO person)
         {
+            // Retorna uma nova instancia de PersonVO
+            // O mais adequado é validar a entrada de dados
             if (person == null) return new PersonVO();
+
+            // Converte um VO em uma entidade
             var personEntity = _converter.Parse(person);
+
+            // Atualiza os dados
             var result = _repository.Update(personEntity);
+
+            // Converte a Entidade retornada em VO
             var personVO = _converter.Parse(result);
+
+            //Retorna o VO
             return personVO;
         }
 
