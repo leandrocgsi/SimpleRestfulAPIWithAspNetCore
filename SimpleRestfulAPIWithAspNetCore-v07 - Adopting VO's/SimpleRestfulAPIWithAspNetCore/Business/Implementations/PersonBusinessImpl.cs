@@ -53,7 +53,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
             var persons = _repository.FindAll();
 
             // Converte a lista de Entidades retornada em VO e a retorna
-            return _converter.ParseEntityListToVOList(persons);
+            return _converter.ParseList(persons);
         }
 
         public PersonVO Update(PersonVO person)

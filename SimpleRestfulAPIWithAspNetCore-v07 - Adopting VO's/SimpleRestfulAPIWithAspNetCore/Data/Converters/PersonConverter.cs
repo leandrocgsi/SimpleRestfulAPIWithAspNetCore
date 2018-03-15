@@ -10,6 +10,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Data.Converters
     {
         public string FirstName { get; private set; }
 
+        //Recebe um VO e retorna uma Entity
         public Person Parse(PersonVO origin)
         {
             if (origin == null) return new Person();
@@ -22,6 +23,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Data.Converters
             };
         }
 
+        //Recebe uma Entity e retorna um VO
         public PersonVO Parse(Person origin)
         {
             if (origin == null) return new PersonVO();
@@ -34,16 +36,19 @@ namespace SimpleRestfulAPIWithAspNetCore.Data.Converters
             };
         }
 
-        public List<Person> ParseVOListToEntityList(List<PersonVO> Persons)
+        //Recebe uma lista de VO e retorna uma lista de Entities
+        public List<Person> ParseList(List<PersonVO> Persons)
         {
             if (Persons == null) return new List<Person>();
             return Persons.Select(item => Parse(item)).ToList();
         }
 
-        public List<PersonVO> ParseEntityListToVOList(List<Person> Persons)
+        //Recebe uma lista de Entities e retorna uma lista de VO
+        public List<PersonVO> ParseList(List<Person> Persons)
         {
             if (Persons == null) return new List<PersonVO>();
             return Persons.Select(item => Parse(item)).ToList();
         }
+
     }
 }

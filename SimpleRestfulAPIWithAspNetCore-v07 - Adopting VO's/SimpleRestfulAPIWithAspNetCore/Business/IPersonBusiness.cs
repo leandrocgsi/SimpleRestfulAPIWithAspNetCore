@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace SimpleRestfulAPIWithAspNetCore.Business
 {
+    //Substituição das entidades pelo VO
     public interface IPersonBusiness
     {
         PersonVO Create(PersonVO person);
