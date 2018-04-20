@@ -1,20 +1,35 @@
 ﻿using SimpleRestfulAPIWithAspNetCore.Models.Entities.Base;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace SimpleRestfulAPIWithAspNetCore.Models.Entities
 {
     public class Extract : BaseEntity
     {
-        // Anotações de mapeamento ORM
-        // são opcionais se o nome do atributo
-        // e da coluna na tabela forem iguais
-        [Column("FirstName")]
-        public string FirstName { get; set; }
+        public Master Master { get; set; }
+        public List<Detail> Detail { get; set; } = new List<Detail>();
+    }
 
-        [Column("LastName")]
-        public string LastName { get; set; }
-
-        [Column("Address")]
+    public class Master : BaseEntity
+    {
+        public string CardNumber { get; set; }
+        public string ClientName { get; set; }
         public string Address { get; set; }
+        public string CardLimit { get; set; }
+        public string Balance { get; set; }
+        public string ExpirationDate { get; set; }
+    }
+
+    public class Detail : BaseEntity
+    {
+        public string OperationDate { get; set; }
+        public string OperationTime { get; set; }
+        public string EmporiumName { get; set; }
+        public string OperationType { get; set; }
+        public string Value { get; set; }
+        public string MonthYearRelease { get; set; }
+        public string EmporiumCNPJ { get; set; }
+        public string TotalValue { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
     }
 }
