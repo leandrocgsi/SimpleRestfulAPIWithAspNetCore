@@ -5,7 +5,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Models.Entities
 {
     // Estende BaseEntity por causa
     // do repositório genérico
-    public class Statement : BaseEntity
+    public class Detail : BaseEntity
     {
         // Anotações de mapeamento ORM
         // são opcionais se o nome do atributo
