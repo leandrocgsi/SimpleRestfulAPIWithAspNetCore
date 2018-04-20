@@ -9,7 +9,6 @@ namespace SimpleRestfulAPIWithAspNetCore.Data.VO
         public string EmporiumName { get; set; }
         public string OperationType { get; set; }
         public decimal Value { get; set; }
-        public string MonthYearRelease { get; set; }
         public string EmporiumCNPJ { get; set; }
         public decimal TotalValue { get; set; }
         public string Latitude { get; set; }

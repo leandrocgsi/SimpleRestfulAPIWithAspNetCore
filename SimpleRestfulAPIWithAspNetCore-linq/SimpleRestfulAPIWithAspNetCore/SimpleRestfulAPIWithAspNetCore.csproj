@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Models\Entities\Extract.cs" />
+    <Compile Remove="Business\IExtracBusiness.cs" />
   </ItemGroup>
 
   <ItemGroup>

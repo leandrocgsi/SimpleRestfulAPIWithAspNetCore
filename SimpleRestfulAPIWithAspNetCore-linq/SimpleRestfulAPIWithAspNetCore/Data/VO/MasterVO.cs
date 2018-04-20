@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SimpleRestfulAPIWithAspNetCore.Data.VO
+﻿namespace SimpleRestfulAPIWithAspNetCore.Data.VO
 {
     public class MasterVO
     {
@@ -10,6 +8,6 @@ namespace SimpleRestfulAPIWithAspNetCore.Data.VO
         public string Address { get; set; }
         public decimal CardLimit { get; set; }
         public decimal Balance { get; set; }
-        public DateTime ExpirationDate { get; set; }
+        public string ExpirationDate { get; set; }
     }
 }

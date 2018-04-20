@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using SimpleRestfulAPIWithAspNetCore.Models.Entities.Context;
 using SimpleRestfulAPIWithAspNetCore.Repository.Generic;
+using SimpleRestfulAPIWithAspNetCore.Repository;
 
 namespace SimpleRestfulAPIWithAspNetCore
 {
@@ -36,6 +37,9 @@ namespace SimpleRestfulAPIWithAspNetCore
             });
 
             services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
+            services.AddScoped<IExtractBusiness, ExtractBusinessImpl>();
+
+            services.AddScoped<ExtractRepository>();
 
             //Adicionando a injeção de dependencias do repositorio genérico
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
