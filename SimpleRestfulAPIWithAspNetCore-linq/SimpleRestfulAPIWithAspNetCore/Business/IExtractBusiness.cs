@@ -1,9 +1,10 @@
-﻿using SimpleRestfulAPIWithAspNetCore.Data.VO;
+﻿using System;
+using SimpleRestfulAPIWithAspNetCore.Data.VO;
 
 namespace SimpleRestfulAPIWithAspNetCore.Business
 {
     public interface IExtractBusiness
     {
-        ExtractVO GetExtract();
+        ExtractVO GetExtract(DateTime? startDate, DateTime? endDate);
     }
 }
