@@ -33,7 +33,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository
             return new Master()
             {
                 Id = 1,
-                Address = "Grand Avenue 24, Tajikistan",
+                Address = "Rua Maria Soares da Silva, 721, Benfica - Juiz de Fora-MG, 36090-702",
                 Balance = "15000",
                 CardLimit = "600000",
                 CardNumber = "4115609595135957",
