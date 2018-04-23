@@ -12,7 +12,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Repository
             //_context = context;
         }
 
-        public Extract FindAll()
+        public Extract GetExtract()
         {
             return MockExtract();
         }

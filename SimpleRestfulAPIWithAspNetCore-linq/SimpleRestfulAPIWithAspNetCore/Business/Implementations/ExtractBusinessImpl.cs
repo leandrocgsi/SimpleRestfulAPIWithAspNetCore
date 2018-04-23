@@ -1,28 +1,26 @@
-﻿using System.Collections.Generic;
-using SimpleRestfulAPIWithAspNetCore.Models.Entities;
-using SimpleRestfulAPIWithAspNetCore.Repository.Generic;
-using SimpleRestfulAPIWithAspNetCore.Data.VO;
+﻿using SimpleRestfulAPIWithAspNetCore.Data.VO;
 using SimpleRestfulAPIWithAspNetCore.Data.Converters;
+using SimpleRestfulAPIWithAspNetCore.Repository;
 
 namespace SimpleRestfulAPIWithAspNetCore.Business.Implementations
 {
     public class ExtractBusinessImpl : IExtractBusiness
     {
 
-        private IRepository<Extract> _repository;
+        private ExtractRepository _repository;
         
         private readonly ExtractConverter _converter;
 
-        public ExtractBusinessImpl(IRepository<Extract> repository)
+        public ExtractBusinessImpl(ExtractRepository repository)
         {
             _repository = repository;
             _converter = new ExtractConverter();
         }
 
-        public List<ExtractVO> FindAll()
+        public ExtractVO GetExtract()
         {
-            var extracts = _repository.FindAll();
-            return _converter.ParseList(extracts);
+            var extract = _repository.GetExtract();
+            return _converter.Parse(extract);
         }
     }
 }

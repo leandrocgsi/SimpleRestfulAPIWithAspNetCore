@@ -24,7 +24,8 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         [SwaggerResponse(401)]
         public IActionResult Get()
         {
-            return Ok(_extractBusiness.FindAll());
+            var extract = _extractBusiness.GetExtract();
+            return Ok(extract);
         }
     }
 }
