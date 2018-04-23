@@ -35,7 +35,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Data.Converters
             var details = ParseList(detail);
 
             List<List<DetailVO>> months = details
-                .GroupBy(det => det.OperationDate)
+                .GroupBy(det => det.OperationDate.Month)
                 .Select(group => group.ToList())
                 .ToList();
 
