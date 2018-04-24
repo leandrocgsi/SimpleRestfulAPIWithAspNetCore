@@ -19,7 +19,7 @@ namespace SimpleRestfulAPIWithAspNetCore.Controllers
         }
 
         [HttpGet]
-        [SwaggerResponse((200), Type = typeof(List<ExtractVO>))]
+        [SwaggerResponse((200), Type = typeof(ExtractVO))]
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
