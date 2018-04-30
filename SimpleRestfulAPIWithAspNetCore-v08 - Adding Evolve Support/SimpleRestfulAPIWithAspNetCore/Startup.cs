@@ -35,6 +35,10 @@ namespace SimpleRestfulAPIWithAspNetCore
 
         public void ConfigureServices(IServiceCollection services /*, IConfiguration configuration*/)
         {
+            var connection = Configuration["MySqlConnection:MySqlConnectionString"];
+            services.AddDbContext<MySQLContext>(options =>
+                options.UseMySql(connection)
+            );
 
             if (Environment.IsProduction())
             {
@@ -42,10 +46,10 @@ namespace SimpleRestfulAPIWithAspNetCore
                 {
                     var cnx = new MySqlConnection(_connectionString);
 
-                    var evolve = new Evolve.Evolve("evolve.json", cnx, msg => _logger.LogInformation(msg)) // retrieve the MSBuild configuration
+                    var evolve = new Evolve.Evolve("evolve.json", cnx, msg => _logger.LogInformation(msg)) 
                     {
-                        Locations = new List<string> { "db/migrations" }, // exclude db/datasets from production environment
-                        IsEraseDisabled = true, // ensure erase command is disabled in production
+                        Locations = new List<string> { "db/migrations" },
+                        IsEraseDisabled = true,
                     };
 
                     evolve.Migrate();
@@ -57,11 +61,6 @@ namespace SimpleRestfulAPIWithAspNetCore
                 }
             }
 
-            var connection = Configuration["MySqlConnection:MySqlConnectionString"];
-            services.AddDbContext<MySQLContext>(options =>
-                options.UseMySql(connection)
-            );
-
             services.AddMvc();
 
             services.AddSwaggerGen(c =>
@@ -70,8 +69,6 @@ namespace SimpleRestfulAPIWithAspNetCore
             });
 
             services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
-
-            //Adicionando a injeção de dependencias do repositorio genérico
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 
