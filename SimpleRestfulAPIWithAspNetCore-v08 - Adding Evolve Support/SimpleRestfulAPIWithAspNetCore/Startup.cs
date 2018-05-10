@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+﻿using System;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Builder;
+using SimpleRestfulAPIWithAspNetCore.Models.Entities.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Rewrite;
 using SimpleRestfulAPIWithAspNetCore.Business;
 using SimpleRestfulAPIWithAspNetCore.Business.Implementations;
-using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.EntityFrameworkCore;
-using SimpleRestfulAPIWithAspNetCore.Models.Entities.Context;
 using SimpleRestfulAPIWithAspNetCore.Repository.Generic;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System;
-using MySql.Data.MySqlClient;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SimpleRestfulAPIWithAspNetCore
 {
@@ -33,18 +32,18 @@ namespace SimpleRestfulAPIWithAspNetCore
 
         public IHostingEnvironment Environment { get; }
 
-        public void ConfigureServices(IServiceCollection services /*, IConfiguration configuration*/)
+        public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration["MySqlConnection:MySqlConnectionString"];
             services.AddDbContext<MySQLContext>(options =>
                 options.UseMySql(connection)
             );
 
-            if (Environment.IsProduction())
+            if (Environment.IsDevelopment())
             {
                 try
                 {
-                    var cnx = new MySqlConnection(_connectionString);
+                    var cnx = new MySql.Data.MySqlClient.MySqlConnection("Server=localhost;Port=3306;Database=evolve;Uid=root;Pwd=;SslMode=none;");
 
                     var evolve = new Evolve.Evolve("evolve.json", cnx, msg => _logger.LogInformation(msg)) 
                     {

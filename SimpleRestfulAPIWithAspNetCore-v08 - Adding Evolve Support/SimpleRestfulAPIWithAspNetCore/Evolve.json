@@ -1,6 +1,6 @@
 ﻿{
-  "Evolve.Driver": "MySql.Data",
-  "Evolve.ConnectionString": "Server=localhost;DataBase=Livraria;Uid=root;Pwd=",
+  "Evolve.Driver": "MySQL.Data",
+  "Evolve.ConnectionString": "Server=localhost;Port=3306;Database=evolve;Uid=root;Pwd=;SslMode=none;",
   "Evolve.Locations": "db",
   "Evolve.Command": "migrate",
   "Evolve.Placeholder.table4": "table_4"

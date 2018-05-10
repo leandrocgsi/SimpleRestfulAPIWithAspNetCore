@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EvolveUtils.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="..\..\SimpleRestfulAPIWithAspNetCore-v07 - Adopting VO%2527s\SimpleRestfulAPIWithAspNetCore\Data\ValueObjects\" />
-    <Folder Include="db\datasets\" />
     <Folder Include="db\migrations\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
@@ -15,6 +18,7 @@
     <PackageReference Include="Evolve" Version="1.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.11" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
   </ItemGroup>
@@ -22,5 +26,13 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
+  
+    <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'MySqlConnector'">
+        <Aliases>MySqlConnectorAlias</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
 
 </Project>
